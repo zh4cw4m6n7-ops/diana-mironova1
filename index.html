@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="referrer" content="no-referrer">
+    <title>Диана Миронова - Дизайн интерьеров</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #ECE5DC !important;
+            color: #1C1C1C !important;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            width: 100%;
+            font-size: 16px;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+            color: #1C1C1C !important;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+        .section {
+            padding: 5rem 1.5rem;
+        }
+        .card {
+            background: #FBFBFA !important;
+            border: 1px solid #D1C9BE !important;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        .btn-primary {
+            display: inline-block;
+            background: #9E8E7E !important;
+            color: #FFFFFF !important;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-primary:hover {
+            background: #8A7A6A !important;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: #ECE5DC !important;
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+            border-bottom: 1px solid #D1C9BE;
+        }
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.125rem;
+            font-weight: 400;
+            color: #1C1C1C;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .logo-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.625rem;
+            font-weight: 300;
+            color: #1C1C1C;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-top: 0.25rem;
+        }
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background-color: #1C1C1C;
+            transition: 0.3s;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-6px, 6px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-6px, -6px);
+        }
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 280px;
+            height: 100vh;
+            background: #FBFBFA;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1001;
+            padding: 6rem 2rem 2rem;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 0;
+            color: #1C1C1C;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #D6CDC2;
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 1.5rem 4rem;
+            position: relative;
+            background-color: #3a3530;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(28,28,28,0.4);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FBFBFA !important;
+            margin-bottom: 1.5rem;
+        }
+        .hero p {
+            font-size: 1.125rem;
+            color: #ECE5DC !important;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        /* Suppress browser broken-image icon and alt text when src is missing */
+        img:not([src]),
+        img[src=""] {
+            color: transparent;
+            font-size: 0;
+            background: #D6CDC2;
+        }
+        /* Beige placeholder shown when an image fails to load */
+        .img-placeholder {
+            display: none;
+            background: #E8E0D6;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 0.5rem;
+            color: rgba(28,28,28,0.35);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #D1C9BE;
+            background: #FBFBFA;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #1C1C1C;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #9E8E7E;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .process-number {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background: #1C1C1C;
+            color: #FBFBFA;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        footer {
+            background: #1C1C1C;
+            color: #ECE5DC;
+            padding: 3rem 1.5rem;
+        }
+        footer a {
+            color: #ECE5DC;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+        footer a:hover {
+            opacity: 1;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .section {
+                padding: 3rem 1rem;
+            }
+            .grid, .grid-3 {
+                grid-template-columns: 1fr !important;
+            }
+            .nav-container {
+                height: 70px;
+                padding: 0 1rem;
+            }
+            .process-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+            .mobile-menu {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div>
+                <div class="logo">DIANA MIRONOVA</div>
+                <div class="logo-subtitle">ИНТЕРЬЕРЫ</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <a href="tel:+79778971608" style="font-size: 0.875rem; color: #1C1C1C; text-decoration: none;">+7 (977) 897-16-08</a>
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#hero" class="mobile-link">Главная</a>
+            <a href="#benefits" class="mobile-link">Преимущества</a>
+            <a href="#portfolio" class="mobile-link">Портфолио</a>
+            <a href="#about" class="mobile-link">О нас</a>
+            <a href="#process" class="mobile-link">Процесс</a>
+            <a href="#reviews" class="mobile-link">Отзывы</a>
+            <a href="#contact" class="mobile-link">Контакты</a>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero">
+        <img class="hero-bg" src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1600&q=80" alt="" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="img-placeholder hero-bg" style="background: #3a3530;"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Создаем дома, в которых хочется жить.</h1>
+            <p>Полный цикл проектирования и реализации интерьеров. Спокойно. Продуманно. До результата.</p>
+            <a href="#contact" class="btn-primary">Обсудить проект</a>
+        </div>
+    </section>
+
+    <section id="benefits" class="section" style="background: #F5F5F0;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 4rem;">Почему выбирают нас</h2>
+            <div class="grid">
+                <div class="card">
+                    <div style="width: 64px; height: 64px; background: rgba(28,28,28,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <svg style="width: 32px; height: 32px;" fill="none" stroke="#1C1C1C" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">СПОКОЙСТВИЕ</h3>
+                    <p style="font-size: 1.125rem; color: rgba(28,28,28,0.8);">Мы берем сложные вопросы на себя.</p>
+                </div>
+                <div class="card">
+                    <div style="width: 64px; height: 64px; background: rgba(28,28,28,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <svg style="width: 32px; height: 32px;" fill="none" stroke="#1C1C1C" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">СЕРВИС</h3>
+                    <p style="font-size: 1.125rem; color: rgba(28,28,28,0.8);">Сопровождаем на каждом этапе.</p>
+                </div>
+                <div class="card">
+                    <div style="width: 64px; height: 64px; background: rgba(28,28,28,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <svg style="width: 32px; height: 32px;" fill="none" stroke="#1C1C1C" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">РЕЗУЛЬТАТ</h3>
+                    <p style="font-size: 1.125rem; color: rgba(28,28,28,0.8);">Картинка оживает именно такой, какой была задумана.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 4rem;">Портфолио</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" referrerpolicy="no-referrer" crossorigin="anonymous" alt="Квартира в Москве" style="width: 100% !important; height: 260px !important; object-fit: cover !important; display: block !important; margin-bottom: 1.5rem;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="img-placeholder" style="width: 100%; height: 260px; margin-bottom: 1.5rem;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(28,28,28,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Фото</span></div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Квартира в Москве</h3>
+                    <p style="color: rgba(28,28,28,0.7);">Современный минимализм</p>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80" referrerpolicy="no-referrer" crossorigin="anonymous" alt="Загородный дом" style="width: 100% !important; height: 260px !important; object-fit: cover !important; display: block !important; margin-bottom: 1.5rem;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="img-placeholder" style="width: 100%; height: 260px; margin-bottom: 1.5rem;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(28,28,28,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Фото</span></div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Загородный дом</h3>
+                    <p style="color: rgba(28,28,28,0.7);">Уютная элегантность</p>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" referrerpolicy="no-referrer" crossorigin="anonymous" alt="Студия в центре" style="width: 100% !important; height: 260px !important; object-fit: cover !important; display: block !important; margin-bottom: 1.5rem;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="img-placeholder" style="width: 100%; height: 260px; margin-bottom: 1.5rem;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(28,28,28,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Фото</span></div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Студия в центре</h3>
+                    <p style="color: rgba(28,28,28,0.7);">Функциональность и стиль</p>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" referrerpolicy="no-referrer" crossorigin="anonymous" alt="Семейный интерьер" style="width: 100% !important; height: 260px !important; object-fit: cover !important; display: block !important; margin-bottom: 1.5rem;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="img-placeholder" style="width: 100%; height: 260px; margin-bottom: 1.5rem;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(28,28,28,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Фото</span></div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Семейный интерьер</h3>
+                    <p style="color: rgba(28,28,28,0.7);">Тепло и комфорт</p>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80" referrerpolicy="no-referrer" crossorigin="anonymous" alt="Пентхаус" style="width: 100% !important; height: 260px !important; object-fit: cover !important; display: block !important; margin-bottom: 1.5rem;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="img-placeholder" style="width: 100%; height: 260px; margin-bottom: 1.5rem;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(28,28,28,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Фото</span></div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Пентхаус</h3>
+                    <p style="color: rgba(28,28,28,0.7);">Роскошь деталей</p>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&q=80" referrerpolicy="no-referrer" crossorigin="anonymous" alt="Спальня" style="width: 100% !important; height: 260px !important; object-fit: cover !important; display: block !important; margin-bottom: 1.5rem;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="img-placeholder" style="width: 100%; height: 260px; margin-bottom: 1.5rem;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(28,28,28,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Фото</span></div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Спальня</h3>
+                    <p style="color: rgba(28,28,28,0.7);">Спокойствие и гармония</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section" style="background: #F5F5F0;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr; gap: 3rem;">
+                <div style="max-width: 500px; margin: 0 auto; width: 100%;">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" referrerpolicy="no-referrer" crossorigin="anonymous" alt="О дизайнере" style="width: 100% !important; height: 260px !important; object-fit: cover !important; display: block !important;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="img-placeholder" style="width: 100%; height: 260px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(28,28,28,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Фото</span></div>
+                </div>
+                <div style="max-width: 700px; margin: 0 auto;">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">О дизайнере</h2>
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem; font-size: 1.125rem; color: rgba(28,28,28,0.8); line-height: 1.7;">
+                        <p>Диана Миронова — дизайнер интерьеров с глубоким пониманием того, что дом — это не просто красивая картинка, а пространство, которое должно отражать характер и образ жизни его владельцев.</p>
+                        <p>Моя философия проста: интерьер должен быть функциональным, эстетичным и, главное, комфортным. Я создаю пространства, в которых хочется жить, работать и отдыхать. Каждый проект — это история, рассказанная через детали, материалы и свет.</p>
+                        <p>Я верю в спокойную роскошь, где качество важнее количества, а продуманность деталей создает атмосферу настоящего дома.</p>
+                    </div>
+                    <div class="grid-3" style="margin-top: 3rem; padding-top: 3rem; border-top: 1px solid #D6CDC2; text-align: center;">
+                        <div>
+                            <div style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">47+</div>
+                            <div style="font-size: 0.875rem; color: rgba(28,28,28,0.7);">проектов</div>
+                        </div>
+                        <div>
+                            <div style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">12</div>
+                            <div style="font-size: 0.875rem; color: rgba(28,28,28,0.7);">лет опыта</div>
+                        </div>
+                        <div>
+                            <div style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">98%</div>
+                            <div style="font-size: 0.875rem; color: rgba(28,28,28,0.7);">рекомендуют</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="section">
+        <div class="container" style="max-width: 900px;">
+            <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 4rem;">Этапы работы</h2>
+            <div>
+                <div class="process-step">
+                    <div class="process-number">1</div>
+                    <div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Знакомство</h3>
+                        <p style="font-size: 1.125rem; color: rgba(28,28,28,0.8);">Встречаемся, обсуждаем ваши пожелания, образ жизни и бюджет. Изучаем пространство и его возможности.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">2</div>
+                    <div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Концепция</h3>
+                        <p style="font-size: 1.125rem; color: rgba(28,28,28,0.8);">Создаем визуальную концепцию: мудборды, цветовые решения, стилистику. Согласовываем направление.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">3</div>
+                    <div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Проектирование</h3>
+                        <p style="font-size: 1.125rem; color: rgba(28,28,28,0.8);">Разрабатываем полный комплект чертежей, 3D-визуализации и спецификации материалов.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">4</div>
+                    <div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Реализация</h3>
+                        <p style="font-size: 1.125rem; color: rgba(28,28,28,0.8);">Сопровождаем ремонт, контролируем качество, подбираем мебель и декор. Решаем все вопросы.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">5</div>
+                    <div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Возвращение домой</h3>
+                        <p style="font-size: 1.125rem; color: rgba(28,28,28,0.8);">Финальная расстановка, стайлинг и передача готового интерьера. Вы возвращаетесь в дом мечты.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="section" style="background: #F5F5F0;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 4rem;">Отзывы</h2>
+            <div class="grid">
+                <div class="card">
+                    <div style="margin-bottom: 1.5rem;">
+                        <svg style="width: 40px; height: 40px;" fill="rgba(28,28,28,0.2)" viewBox="0 0 24 24">
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                        </svg>
+                    </div>
+                    <p style="font-size: 1.125rem; color: rgba(28,28,28,0.8); margin-bottom: 1.5rem;">Диана создала для нас не просто красивый интерьер — она создала атмосферу. Каждое утро я просыпаюсь и радуюсь тому, как светло и спокойно в нашей спальне. Это именно то чувство дома, о котором мы мечтали.</p>
+                    <div style="font-weight: 600;">Анна и Михаил</div>
+                    <div style="font-size: 0.875rem; color: rgba(28,28,28,0.6); margin-top: 0.25rem;">Квартира в Москве</div>
+                </div>
+                <div class="card">
+                    <div style="margin-bottom: 1.5rem;">
+                        <svg style="width: 40px; height: 40px;" fill="rgba(28,28,28,0.2)" viewBox="0 0 24 24">
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                        </svg>
+                    </div>
+                    <p style="font-size: 1.125rem; color: rgba(28,28,28,0.8); margin-bottom: 1.5rem;">Мы долго искали дизайнера, который бы нас понял. Диана с первой встречи уловила наше настроение. Теперь наш дом — это место силы, куда хочется возвращаться после долгого дня. Спасибо за это тепло!</p>
+                    <div style="font-weight: 600;">Елена</div>
+                    <div style="font-size: 0.875rem; color: rgba(28,28,28,0.6); margin-top: 0.25rem;">Загородный дом</div>
+                </div>
+                <div class="card">
+                    <div style="margin-bottom: 1.5rem;">
+                        <svg style="width: 40px; height: 40px;" fill="rgba(28,28,28,0.2)" viewBox="0 0 24 24">
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                        </svg>
+                    </div>
+                    <p style="font-size: 1.125rem; color: rgba(28,28,28,0.8); margin-bottom: 1.5rem;">Профессионализм и внимание к деталям — это про Диану. Она не просто сделала дизайн-проект, она провела нас за руку через весь ремонт. Результат превзошел ожидания. Наша квартира стала произведением искусства, в котором удобно жить.</p>
+                    <div style="font-weight: 600;">Дмитрий и Ольга</div>
+                    <div style="font-size: 0.875rem; color: rgba(28,28,28,0.6); margin-top: 0.25rem;">Пентхаус</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 1rem;">Обсудим ваш проект?</h2>
+            <p style="font-size: 1.125rem; text-align: center; color: rgba(28,28,28,0.7); margin-bottom: 3rem;">Оставьте заявку, и мы свяжемся с вами в ближайшее время</p>
+            <div style="display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem; padding: 2rem; background: #F5F5F0; border: 1px solid #D6CDC2;">
+                <div>
+                    <div style="font-size: 0.75rem; font-weight: 500; color: rgba(28,28,28,0.6); margin-bottom: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase;">ТЕЛЕФОН</div>
+                    <a href="tel:+79778971608" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #1C1C1C; text-decoration: none;">+7 (977) 897-16-08</a>
+                </div>
+                <div>
+                    <div style="font-size: 0.75rem; font-weight: 500; color: rgba(28,28,28,0.6); margin-bottom: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase;">EMAIL</div>
+                    <a href="mailto:homemironova@mail.ru" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #1C1C1C; text-decoration: none;">homemironova@mail.ru</a>
+                </div>
+            </div>
+            <form id="contactForm" class="card" action="https://api.web3forms.com/submit" method="POST">
+                <!-- Web3Forms access key — replace YOUR_ACCESS_KEY with the key from web3forms.com/create -->
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
+                <input type="hidden" name="subject" value="Новая заявка с сайта — Диана Миронова">
+                <input type="hidden" name="from_name" value="Сайт Diana Mironova">
+                <input type="hidden" name="redirect" value="false">
+                <!-- Honeypot spam protection -->
+                <input type="checkbox" name="botcheck" style="display:none">
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div>
+                        <label style="display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Ваше имя</label>
+                        <input type="text" name="name" required placeholder="Как к вам обращаться?">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Telegram или телефон</label>
+                        <input type="text" name="contact" required placeholder="@username или +7 (___) ___-__-__">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Комментарий</label>
+                        <textarea name="message" rows="5" placeholder="Расскажите о вашем проекте..."></textarea>
+                    </div>
+                    <button type="submit" id="submitBtn" class="btn-primary" style="width: 100%; padding: 1rem; font-size: 1.125rem;">Оставить заявку</button>
+                    <div id="formSuccess" style="display:none; padding: 1rem; background: #f0f7f0; border: 1px solid #b8d8b8; color: #2d6a2d; text-align: center; font-size: 0.95rem;">
+                        ✓ Заявка отправлена! Мы свяжемся с вами в ближайшее время.
+                    </div>
+                    <div id="formError" style="display:none; padding: 1rem; background: #fdf0f0; border: 1px solid #d8b8b8; color: #6a2d2d; text-align: center; font-size: 0.95rem;">
+                        Ошибка при отправке. Пожалуйста, напишите напрямую на homemironova@mail.ru
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #ECE5DC;">Диана Миронова</h3>
+                    <p style="color: rgba(236,229,220,0.7);">Дизайн интерьеров</p>
+                </div>
+                <div>
+                    <h4 style="font-size: 1.125rem; margin-bottom: 1rem; color: #ECE5DC;">Контакты</h4>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; color: rgba(236,229,220,0.7);">
+                        <p>Email: homemironova@mail.ru</p>
+                        <p>Telegram: @diana_mironova</p>
+                        <p>Телефон: +7 (977) 897-16-08</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="font-size: 1.125rem; margin-bottom: 1rem; color: #ECE5DC;">Социальные сети</h4>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#">
+                            <svg style="width: 24px; height: 24px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg style="width: 24px; height: 24px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9.417 15.181l-.397 5.584c.568 0 .814-.244 1.109-.537l2.663-2.545 5.518 4.041c1.012.564 1.725.267 1.998-.931l3.622-16.972.001-.001c.321-1.496-.541-2.081-1.527-1.714l-21.29 8.151c-1.453.564-1.431 1.374-.247 1.741l5.443 1.693 12.643-7.911c.595-.394 1.136-.176.691.218z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(236,229,220,0.2); padding-top: 2rem; text-align: center; color: rgba(236,229,220,0.6); font-size: 0.875rem;">
+                <p>&copy; 2026 Диана Миронова. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ── Image Resilience ──────────────────────────────────────────────────────
+        // Desktop browsers load Unsplash directly — no intervention needed.
+        // Telegram iOS WebView strips referrers and blocks cross-origin img requests.
+        // Strategy:
+        //   1. Detect Telegram iOS WebView by user-agent.
+        //   2. On that environment only, fetch each image with referrerPolicy:'no-referrer'
+        //      and swap the src to a local blob:// URL that the WebView can render.
+        //   3. On failure (network down etc.) suppress the browser broken-icon by
+        //      removing src and letting the CSS placeholder (#D6CDC2 bg) show instead.
+        //   4. On desktop — do nothing at all; images load as authored.
+
+        (function () {
+            var ua = navigator.userAgent || '';
+            // Telegram iOS WebView identifies itself with these tokens
+            var isTelegramIOS = /iPhone|iPad|iPod/i.test(ua) && /Telegram/i.test(ua);
+
+            function loadViaBlob(img) {
+                var originalSrc = img.getAttribute('data-src') || img.src;
+                if (!originalSrc || originalSrc.indexOf('blob:') === 0) return;
+
+                fetch(originalSrc, { referrerPolicy: 'no-referrer' })
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('Network response was not ok');
+                        return res.blob();
+                    })
+                    .then(function (blob) {
+                        var blobURL = URL.createObjectURL(blob);
+                        img.src = blobURL;
+                    })
+                    .catch(function () {
+                        // Clean placeholder — no broken icon
+                        img.removeAttribute('src');
+                        img.style.minHeight = img.style.height || '260px';
+                        img.style.background = '#D6CDC2';
+                        img.style.display = 'block';
+                    });
+            }
+
+            if (isTelegramIOS) {
+                document.addEventListener('DOMContentLoaded', function () {
+                    document.querySelectorAll('img').forEach(function (img) {
+                        // Clear onerror so the blob path handles errors cleanly
+                        img.onerror = null;
+                        loadViaBlob(img);
+                    });
+                });
+            } else {
+                // Desktop / non-Telegram: just attach a clean onerror fallback
+                // so a stray network failure never shows a broken icon
+                document.addEventListener('DOMContentLoaded', function () {
+                    document.querySelectorAll('img').forEach(function (img) {
+                        img.addEventListener('error', function () {
+                            this.style.background = '#D6CDC2';
+                            this.style.display = 'block';
+                            this.removeAttribute('src');
+                        });
+                    });
+                });
+            }
+        })();
+        // ─────────────────────────────────────────────────────────────────────────
+
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        mobileLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        document.addEventListener('click', function(e) {
+            if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+        
+        // ── Contact Form — Web3Forms async submission ─────────────────────────────
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            var btn     = document.getElementById('submitBtn');
+            var success = document.getElementById('formSuccess');
+            var error   = document.getElementById('formError');
+
+            btn.disabled = true;
+            btn.textContent = 'Отправка...';
+            success.style.display = 'none';
+            error.style.display   = 'none';
+
+            try {
+                var res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: new FormData(this)
+                });
+                var data = await res.json();
+
+                if (data.success) {
+                    success.style.display = 'block';
+                    this.reset();
+                } else {
+                    throw new Error(data.message || 'Submission failed');
+                }
+            } catch (err) {
+                console.error('Form error:', err);
+                error.style.display = 'block';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Оставить заявку';
+            }
+        });
+        // ─────────────────────────────────────────────────────────────────────────
+    </script>
+</body>
+</html>
